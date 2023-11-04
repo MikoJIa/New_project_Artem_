@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'project_app.apps.ProjectAppConfig'
+    'project_app.apps.ProjectAppConfig',
+    'curse_app.apps.CurseAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# superuser for project_app
+# login adminnikolay ,password 80292788064
+#
