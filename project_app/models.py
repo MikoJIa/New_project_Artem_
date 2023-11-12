@@ -8,6 +8,7 @@ class Task(models.Model):
     descriptions = models.TextField(verbose_name='Описание', blank=True)
     created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Дата обновления', auto_now=True)
+    finish_data = models.DateField(verbose_name='Дата окончания', null=True)
     priority_task = models.CharField(verbose_name='Приоритет задачи', max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
 
