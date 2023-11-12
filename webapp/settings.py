@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'project_app.apps.ProjectAppConfig',
-    'curse_app.apps.CurseAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # superuser for project_app
 # login adminnikolay ,password 80292788064
 #
+
+
+# login adminmikola
+# password qwerty123
