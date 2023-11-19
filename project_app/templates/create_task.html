@@ -3,11 +3,15 @@
 {% block title %}Добавить задачу{% endblock %}
 
 {% block context %}
+<div class="container">
     <h1>Добавить задачу</h1>
+</div>
 <form method="post" action="{% url 'create_task' %}">
-
-    {{ form.as_p }}
-
+    <div class="container-fluid">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Добавить</button>
+    </div>
 </form>
 
 {% endblock %}
