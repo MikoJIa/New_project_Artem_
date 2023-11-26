@@ -2,8 +2,10 @@ from django.http import HttpResponseNotFound, HttpResponseNotAllowed, HttpRespon
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import DeleteView
 
-from project_app.forms import CreateTaskForm
+from project_app.forms import CreateTaskForm, RegisterUserForm
 from project_app.models import Task, FavoriteTask
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 
 def index(request):
@@ -54,3 +56,23 @@ def task_delete(request, id):
         return redirect('favorite_task')
     return HttpResponse('<h1>Not task</h1>')
 
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Вы успешно зарегистрировались!!!')
+            return redirect('auth_user')
+        else:
+            messages.error(request, 'Ошибка регистрации!!!')
+    else:
+        form = RegisterUserForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'register.html', context)
+
+
+def auth_user(request):
+    return render(request, 'auth_user.html')

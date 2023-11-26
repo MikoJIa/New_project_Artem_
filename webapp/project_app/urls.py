@@ -8,5 +8,7 @@ urlpatterns = [
     path('favorite-task/', favorite_task, name='favorite_task'),
     path('favorite-task/add-to-favorite/<int:task_id>/', add_to_favorite, name='add_to_favorite'),
     # path('favorite-task/task_delete/<int:id>/', task_delete, name='task_delete')
-    path('task_delete/<int:id>/', task_delete,  name='task_delete')
+    path('task_delete/<int:id>/', task_delete,  name='task_delete'),
+    path('register/', register, name='register'),
+    path('auth_user/', auth_user, name='auth_user'),
 ]
