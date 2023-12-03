@@ -1,9 +1,22 @@
-string = "Hello!"
+from datetime import datetime
 
-for i in range(1, len(string)):
-    if i % 2 == 0:
-        print(string[0:i])
-    else:
-        print(string[0:i], end=",")
+def dec_func(func):
+    def wrapper(arg):
+        t1 = datetime.now()
+        x = func(arg)
+        t2 = datetime.now()
+        print("Time of completing this task:", x, end=" ")
+        return x
+    return wrapper
 
 
+@dec_func
+def factorial(n):
+    res = 1
+    for i in range(1, n+1):
+        res = res * i
+    return res
+
+
+fact_100 = factorial(3)
+print(fact_100)

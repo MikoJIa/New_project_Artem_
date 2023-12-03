@@ -1,11 +1,13 @@
 from django.http import HttpResponseNotFound, HttpResponseNotAllowed, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.template.context_processors import request
 from django.views.generic import DeleteView
 
-from project_app.forms import CreateTaskForm, RegisterUserForm
+from project_app.forms import CreateTaskForm, RegisterUserForm, AuthUserForm
 from project_app.models import Task, FavoriteTask
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.contrib.auth import login, logout
 
 
 def index(request):
@@ -74,5 +76,24 @@ def register(request):
     return render(request, 'register.html', context)
 
 
-def auth_user(request):
-    return render(request, 'auth_user.html')
+def user_login(request):
+    if request.method == 'POST':
+        form = AuthUserForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('index')
+    else:
+        form = AuthUserForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'auth_user.html', context)
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('auth_user')
+
+
+

@@ -10,5 +10,6 @@ urlpatterns = [
     # path('favorite-task/task_delete/<int:id>/', task_delete, name='task_delete')
     path('task_delete/<int:id>/', task_delete,  name='task_delete'),
     path('register/', register, name='register'),
-    path('auth_user/', auth_user, name='auth_user'),
+    path('auth-user/', user_login, name='auth_user'),
+    path('logout/', user_logout, name='logout')
 ]
