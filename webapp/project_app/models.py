@@ -11,6 +11,8 @@ class Task(models.Model):
     finish_data = models.DateField(verbose_name='Дата окончания', null=True)
     priority_task = models.CharField(verbose_name='Приоритет задачи', max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    user_obj = models.Manager()
+    task_obj = models.Manager()
 
     def __str__(self):
         return self.title
@@ -19,6 +21,7 @@ class Task(models.Model):
 class FavoriteTask(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE, verbose_name='Задача')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    fav_objects = models.Manager()
 
     def __str__(self):
         return f'{self.task} {self.user}'

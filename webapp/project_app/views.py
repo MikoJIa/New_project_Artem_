@@ -11,7 +11,7 @@ from django.contrib.auth import login, logout
 
 
 def index(request):
-    task = Task.objects.all()
+    task = Task.task_obj.all()
     context = {
         'task': task
     }
@@ -33,7 +33,7 @@ def add_task(request):
 
 
 def favorite_task(request):
-    favorite_task = FavoriteTask.objects.filter(user=request.user)
+    favorite_task = FavoriteTask.fav_objects.filter(user=request.user)
     context = {
         'favorite_task': [task.task for task in favorite_task]
     }
@@ -43,7 +43,7 @@ def favorite_task(request):
 def add_to_favorite(request, task_id):
     if request.method == 'POST':
         task = get_object_or_404(Task, pk=task_id)
-        FavoriteTask.objects.create(user=request.user, task=task)
+        FavoriteTask.fav_objects.create(user=request.user, task=task)
         return redirect('index')
     else:
         return redirect('index')
@@ -52,8 +52,8 @@ def add_to_favorite(request, task_id):
 def task_delete(request, id):
     if request.method == 'POST':
         user = request.user
-        task = Task.objects.get(id=id)
-        favorite_task = FavoriteTask.objects.get(user=user, task=task)
+        task = Task.task_obj.get(id=id)
+        favorite_task = FavoriteTask.fav_objects.get(user=user, task=task)
         favorite_task.delete()
         return redirect('favorite_task')
     return HttpResponse('<h1>Not task</h1>')
